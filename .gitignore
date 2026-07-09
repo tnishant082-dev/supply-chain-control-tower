@@ -1,0 +1,19 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Power BI local / cache
+**/.pbi/
+*.pbix
+*.pbit
+*.lock.json
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+.ipynb_checkpoints/
+__pycache__/
+.venv/
