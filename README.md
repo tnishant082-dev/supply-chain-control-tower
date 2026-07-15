@@ -4,7 +4,7 @@ End-to-end data analyst project for enterprise supply chain performance — Exce
 
 **GitHub:** [tnishant082-dev/supply-chain-control-tower](https://github.com/tnishant082-dev/supply-chain-control-tower)
 
-**Open in Power BI Desktop:** [`dashboard/SupplyChain-Control-Tower.pbip`](./dashboard/SupplyChain-Control-Tower.pbip)
+**Semantic model / report stub:** [`dashboard/SupplyChain-Control-Tower.pbip`](./dashboard/SupplyChain-Control-Tower.pbip) · portfolio visuals in [`screenshots/`](./screenshots/)
 
 ---
 
@@ -145,6 +145,8 @@ README.md
 ---
 
 ## Screenshots
+
+Portfolio report visuals for review — **KPI numbers come from the cleaned pipeline / SQL outputs** in this repo (`data/`, `sql/`). Not a claim that these PNGs are live Power BI Desktop exports or a published Fabric workspace.
 
 ### Executive Command Center
 
