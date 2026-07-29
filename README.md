@@ -1,24 +1,14 @@
 # Supply Chain Control Tower
 
-End-to-end data analyst project for enterprise supply chain performance — Excel dictionary & cleaning log, Python EDA, SQL KPI queries, and a multi-page Power BI control tower covering finance, logistics, inventory, warehouses, procurement, vendors, fulfillment, and sustainability.
+Analysis of enterprise supply chain performance across orders, shipments, inventory, warehouses, procurement, vendors, and sustainability. Finance, service, and logistics metrics are reviewed together so leadership can see where the network is under pressure and what to investigate first.
 
-**GitHub:** [tnishant082-dev/supply-chain-control-tower](https://github.com/tnishant082-dev/supply-chain-control-tower)
-
-**Semantic model / report stub:** [`dashboard/SupplyChain-Control-Tower.pbip`](./dashboard/SupplyChain-Control-Tower.pbip) · portfolio visuals in [`screenshots/`](./screenshots/)
-
----
-
-## Project Overview
-
-Orders, shipments, inventory, and vendor extracts are modeled as a star schema and surfaced in one control tower. Leadership can review service, cost, working capital, and exceptions without hopping across spreadsheets.
-
-Parquet inputs live under `data/`. Demo walkthrough: [`artifacts/supply-chain-control-tower-demo.mp4`](./artifacts/supply-chain-control-tower-demo.mp4)
+**Walkthrough:** [`artifacts/supply-chain-control-tower-demo.mp4`](./artifacts/supply-chain-control-tower-demo.mp4)
 
 ---
 
 ## Business Problem
 
-Operational data usually sits in separate OMS / WMS / TMS / procurement files. Without a shared model it is hard to answer:
+Operational data usually sits in separate OMS / WMS / TMS / procurement files. Without a shared view it is hard to answer:
 
 - Are we making money after cost to serve?
 - What is OTIF, fill rate, and perfect-order performance?
@@ -28,200 +18,161 @@ Operational data usually sits in separate OMS / WMS / TMS / procurement files. W
 
 ---
 
-## End-to-End Workflow
+## Dashboard Overview
 
-```text
-Source extracts (OMS / WMS / TMS / PO)
-        │
-        ▼
-   Excel  ──►  dictionary, cleaning log, KPI / warehouse pivots
-        │
-        ▼
-   Python ──►  flag mix, OTIF checks, mode & inventory charts
-        │
-        ▼
-   SQL    ──►  staging tables, quality checks, control-tower KPIs
-        │
-        ▼
-   Power BI ──► star schema, DAX, bookmarks, RLS, multi-page report
-```
-
-| Layer | What it does |
-|---|---|
-| **Excel** | Field dictionary, staging issues log, executive & warehouse summaries |
-| **Python** | Revenue / OTIF reconciliation, transport mix, inventory trend |
-| **SQL** | Staging DDL, unknown-key checks, finance / logistics / PO queries |
-| **Power BI** | Full control-tower report with time intelligence and RLS roles |
+A multi-page interactive control tower for finance, service, logistics, inventory, procurement, and sustainability review. Decision-makers can move from executive KPIs to OTIF, freight, inventory coverage, vendors, fulfillment, and customer cuts in one place.
 
 ---
 
 ## Key Metrics
 
-Figures from the included model (aligned with the live report):
-
 | Area | Metrics |
 |---|---|
-| **Finance** | Revenue **$32M** · Profit **$4M** · Orders **66K** · Cost to serve **$7M** · Working capital **$14M** |
-| **Service** | OTIF **40.8%** · Fill rate **97.8%** · Perfect order **18.8%** · Lead time **3.5 days** |
-| **Inventory** | On hand **$7M** · Turns **8.13** · Inv days **408** · Weeks of supply **58** |
-| **Logistics** | Freight **$1M** · Cost/ship **$15** · Delay rate **57.3%** · Expedite **20.8%** |
-| **Procurement** | PO spend **$35M** · PO count **8,340** · Cycle **4 days** · Preferred mix **80.7%** |
-| **Sustainability** | CO2 **386.6 t** · CO2/ship **5.88** · Air share **15.3%** · Ground **79.2%** |
+| Finance | Revenue **$32M** · Profit **$4M** · Orders **66K** · Cost to serve **$7M** · Working capital **$14M** |
+| Service | OTIF **40.8%** · Fill rate **97.8%** · Perfect order **18.8%** · Lead time **3.5 days** |
+| Inventory | On hand **$7M** · Turns **8.13** · Inv days **408** · Weeks of supply **58** |
+| Logistics | Freight **$1M** · Cost/ship **$15** · Delay rate **57.3%** · Expedite **20.8%** |
+| Procurement | PO spend **$35M** · PO count **8,340** · Cycle **4 days** · Preferred mix **80.7%** |
+| Sustainability | CO2 **386.6 t** · CO2/ship **5.88** · Air share **15.3%** · Ground **79.2%** |
 
 ---
 
 ## Dashboard Pages
 
-| Page | Focus |
-|---|---|
-| Executive Command Center | Revenue, profit, orders, cost to serve, working capital |
-| Supply Chain Control Tower | OTIF, fill rate, perfect order, turns, lead time |
-| Logistics Intelligence | Freight, delay, expedite, carrier scorecard |
-| Inventory Command Center | On hand, days/weeks of supply, ABC vs revenue |
-| Warehouse Analytics | Throughput, WH OTIF, utilization |
-| Warehouse 360 | Node profile drill |
-| Procurement Intelligence | PO spend, cycle, preferred mix |
-| Vendor Performance Hub | Reliability, SLA, quality, risk |
-| Order Fulfillment Analytics | AOV, complete %, perfect order, status |
-| Order Detail | Line-level drill |
-| Customer 360 | Revenue, return rate, OTIF by customer |
-| Sustainability Dashboard | CO2, mode mix, ESG score |
+### Executive Command Center
+
+![Executive Command Center](./screenshots/executive-command.png)
+
+- Revenue **$32M**, profit **$4M**, and **66K** orders set the commercial baseline.
+- Cost to serve is **$7M**; working capital sits near **$14M**.
+- Inventory on hand (**$7M**) is visible alongside P&L so cash and service can be reviewed together.
+
+### Supply Chain Control Tower
+
+![Supply Chain Control Tower](./screenshots/page-control-tower.png)
+
+- OTIF is **40.8%** while fill rate remains high at **97.8%** — in-full is stronger than on-time.
+- Perfect order is **18.8%**; lead time averages **3.5 days**.
+- Inventory turns **8.13** with **408** inventory days — coverage is long relative to service gaps.
+
+### Logistics Intelligence
+
+![Logistics Intelligence](./screenshots/logistics.png)
+
+- Freight cost is about **$1M** at ~**$15** per shipment.
+- Delay rate is elevated at **57.3%** with expedite share **20.8%**.
+- Carrier scorecards help separate mode and partner issues from demand spikes.
+
+### Inventory Command Center
+
+![Inventory Command Center](./screenshots/inventory-command.png)
+
+- On-hand inventory is **$7M** with **408** days on hand and **58** weeks of supply.
+- Long coverage points to working-capital opportunity if service can hold.
+- ABC vs revenue helps prioritize which SKUs deserve attention first.
+
+### Warehouse Analytics
+
+![Warehouse Analytics](./screenshots/warehouse-analytics.png)
+
+- Throughput is **66K** orders / **384K** units across the network.
+- Warehouse OTIF mirrors the network at **40.8%**; utilization averages **0.87**.
+- Node comparisons show where capacity and service pressure concentrate.
+
+### Procurement Intelligence
+
+![Procurement Intelligence](./screenshots/procurement.png)
+
+- PO spend is **$35M** across **8,340** purchase orders.
+- Cycle time averages **4 days**; preferred-vendor mix is **80.7%**.
+- Strong preferred mix still needs SLA and quality follow-through on the vendor hub.
+
+### Vendor Performance Hub
+
+![Vendor Performance Hub](./screenshots/vendor-performance.png)
+
+- Reliability sits near **0.41** with SLA **40.8%** — vendor service tracks network OTIF pressure.
+- Quality is relatively strong (**0.96**); risk score averages **0.33**.
+- Spend of **$32M** makes vendor scorecards material for sourcing reviews.
+
+### Order Fulfillment Analytics
+
+![Order Fulfillment Analytics](./screenshots/order-fulfillment.png)
+
+- **66K** orders at AOV **$503**; complete rate **44.1%**.
+- Perfect order remains **18.8%** — completion and on-time both need attention.
+- Status breakdown (~**$31.6M**) shows where orders stall before delivery.
+
+### Customer 360
+
+![Customer 360](./screenshots/customer-360.png)
+
+- Customer revenue totals **$32M** across **66K** orders (AOV **$503**).
+- Return rate is **4.3%**; customer OTIF matches the network at **40.8%**.
+- Useful for spotting accounts where service pain and revenue both matter.
+
+### Sustainability Dashboard
+
+![Sustainability Dashboard](./screenshots/sustainability.png)
+
+- Network CO2 is **386.6 t** (**5.88** per shipment).
+- Ground modes dominate (**79.2%**) with air share **15.3%**.
+- Mode mix gives a practical lever for footprint discussions alongside freight cost.
 
 ---
 
-## Key Insights
+## Key Findings
 
-- Service is the pressure point: **OTIF ~41%** and **perfect order ~19%** while fill rate stays high (**~98%**) — in-full is less of an issue than on-time.
-- Logistics delay rate is elevated (**~57%** late) with material expedite share (**~21%**); freight is about **$1M** at ~**$15**/shipment.
-- Inventory on-hand sits near **$7M** with long coverage (**~408** days / **~58** weeks of supply), pointing to working-capital opportunity.
-- Procurement books **~$35M** across **8,340** PO lines at a **4-day** SLA cycle; preferred-vendor mix is strong (**~81%**).
-- Sustainability: **386.6 t** CO2 with ground modes dominant (**~79%**) and air around **15%**.
-
----
-
-## Business Impact
-
-- One place for finance, service, inventory, and vendor reviews
-- Faster exception spotting on late shipments and weak OTIF nodes
-- Clearer warehouse and carrier scorecards for ops stand-ups
-- Traceable path from raw facts → SQL KPIs → Power BI measures
-- Support for working-capital and mode-shift discussions with evidence
+1. Service is the pressure point: OTIF ~**41%** and perfect order ~**19%** while fill rate stays high (~**98%**).
+2. Logistics delay rate (~**57%**) and expedite share (~**21%**) need carrier and mode review.
+3. Inventory coverage is long (**~408** days / **~58** weeks) — working-capital opportunity if service holds.
+4. Procurement books **~$35M** with strong preferred mix (~**81%**); vendor SLA still tracks OTIF weakness.
+5. Sustainability footprint (**386.6 t** CO2) is mostly ground; air (~**15%**) is the expensive mode lever.
 
 ---
 
-## Data Model / Tools
+## Analysis Process
 
-Star schema across orders, shipments, inventory, procurement, returns, and vendor performance, with conformed dimensions (date, product, customer, region, warehouse, vendor, carrier, transport mode, status).
+- Collected and cleaned OMS / WMS / TMS / procurement extracts.
+- Validated finance, OTIF, inventory, and freight definitions.
+- Performed exploratory analysis on service, logistics, and inventory.
+- Investigated warehouse, vendor, and customer patterns.
+- Calculated business metrics used in the dashboard.
+- Built dashboard pages to highlight operational bottlenecks.
 
-**Tools:** Power BI · Power Query · DAX · Python (pandas / pyarrow) · SQL · Excel
+---
+
+## Tools Used
+
+- SQL
+- Python
+- Excel
+- Dashboarding
 
 ---
 
 ## Repository Structure
 
 ```text
-excel/         # dictionary, cleaning log, summary tables
-sql/           # staging DDL, quality checks, KPI queries
-notebooks/     # cleaning + EDA notebook
-python/        # KPI helper + optional chart outputs
-data/          # star-schema parquet
-dashboard/     # .pbip + Report + SemanticModel
-screenshots/   # cropped page captures
-artifacts/     # silent demo video
-requirements.txt
-README.md
+data/          cleaned operational tables
+sql/           KPI and quality queries
+python/        cleaning and metric checks
+excel/         dictionary and summary tables
+dashboard/     interactive dashboard
+screenshots/   dashboard page images
+artifacts/     walkthrough video
 ```
 
 ---
 
-## How to open / reproduce
+## How to View
 
-1. Clone the repo
-2. `pip install -r requirements.txt`
-3. Run `notebooks/01_cleaning_eda.ipynb` (or `python python/run_eda_summary.py`)
-4. Export / load parquet facts into staging and run `sql/01_create_staging.sql` → `02_quality_checks.sql` → `03_kpi_queries.sql`
-5. Open `dashboard/SupplyChain-Control-Tower.pbip` in Power BI Desktop and refresh against `data/`
-
----
-
-## Screenshots
-
-Portfolio report visuals for review — **KPI numbers come from the cleaned pipeline / SQL outputs** in this repo (`data/`, `sql/`). Not a claim that these PNGs are live Power BI Desktop exports or a published Fabric workspace.
-
-### Executive Command Center
-
-![Executive Command Center](screenshots/executive-command.png)
-
-Revenue **$32M** · Profit **$4M** · Orders **66K** · Cost to serve **$7M** · Working capital **$14M** · Inventory **$7M**
-
-### Supply Chain Control Tower
-
-![Supply Chain Control Tower](screenshots/page-control-tower.png)
-
-OTIF **40.8%** · Fill rate **97.8%** · Perfect order **18.8%** · Turns **8.13** · Inv days **408** · Lead time **3.5 days**
-
-### Logistics Intelligence
-
-![Logistics Intelligence](screenshots/logistics.png)
-
-Freight **$1M** · Cost/ship **$15** · Delay rate **57.3%** · Expedite **20.8%** · Carrier scorecard
-
-### Inventory Command Center
-
-![Inventory Command Center](screenshots/inventory-command.png)
-
-On hand **$7M** · Days on hand **408** · Weeks of supply **58** · Stockout **0%** · ABC vs revenue
-
-### Warehouse Analytics
-
-![Warehouse Analytics](screenshots/warehouse-analytics.png)
-
-Throughput **66K** orders / **384K** units · WH OTIF **40.8%** · Utilization **0.87**
-
-### Warehouse 360
-
-![Warehouse 360](screenshots/warehouse-360.png)
-
-Node profile: throughput, OTIF, utilization, on-hand by product, ABC mix
-
-### Procurement Intelligence
-
-![Procurement Intelligence](screenshots/procurement.png)
-
-PO spend **$35M** · PO count **8,340** · Cycle **4 days** · Preferred mix **80.7%**
-
-### Vendor Performance Hub
-
-![Vendor Performance Hub](screenshots/vendor-performance.png)
-
-Reliability **0.41** · SLA **40.8%** · Quality **0.96** · Risk **0.33** · Spend **$32M**
-
-### Order Fulfillment Analytics
-
-![Order Fulfillment Analytics](screenshots/order-fulfillment.png)
-
-Orders **66K** · AOV **$503** · Complete **44.1%** · Perfect order **18.8%** · Status breakdown (**$31.6M**)
-
-### Order Detail
-
-![Order Detail](screenshots/order-detail.png)
-
-Line-level drill: revenue, profit, OTIF, late %, units, AOV
-
-### Customer 360
-
-![Customer 360](screenshots/customer-360.png)
-
-Revenue **$32M** · Orders **66K** · AOV **$503** · Return **4.3%** · OTIF **40.8%**
-
-### Sustainability Dashboard
-
-![Sustainability Dashboard](screenshots/sustainability.png)
-
-CO2 **386.6 t** · CO2/ship **5.88** · Air share **15.3%** · Ground **79.2%** · ESG **85.47**
+1. Review screenshots under [`screenshots/`](./screenshots/).
+2. Watch [`artifacts/supply-chain-control-tower-demo.mp4`](./artifacts/supply-chain-control-tower-demo.mp4).
+3. Reproduce KPIs with `sql/03_kpi_queries.sql` against `data/`.
 
 ---
 
 ## Author
 
-[Nishant Tyagi](https://github.com/tnishant082-dev)
+Nishant Tyagi
