@@ -144,21 +144,21 @@ A multi-page interactive control tower for finance, service, logistics, inventor
 
 ## Tools Used
 
+- Power BI
 - SQL
 - Python
 - Excel
-- Dashboarding
 
 ---
 
 ## Repository Structure
 
 ```text
-data/          cleaned operational tables
+data/          cleaned tables (csv / xlsx / parquet)
+excel/         dictionary, cleaning log, summary
 sql/           KPI and quality queries
-python/        cleaning and metric checks
-excel/         dictionary and summary tables
-dashboard/     interactive dashboard
+python/        EDA / cleaning / feature scripts
+dashboard/     Power BI project (.pbip)
 screenshots/   dashboard page images
 artifacts/     walkthrough video
 ```
@@ -167,9 +167,9 @@ artifacts/     walkthrough video
 
 ## How to View
 
-1. Review screenshots under [`screenshots/`](./screenshots/).
-2. Watch [`artifacts/supply-chain-control-tower-demo.mp4`](./artifacts/supply-chain-control-tower-demo.mp4).
-3. Reproduce KPIs with `sql/03_kpi_queries.sql` against `data/`.
+1. Open `dashboard/SupplyChain-Control-Tower.pbip` in Power BI Desktop
+2. See [`screenshots/`](./screenshots/)
+3. Watch [`artifacts/supply-chain-control-tower-demo.mp4`](./artifacts/supply-chain-control-tower-demo.mp4)
 
 ---
 
